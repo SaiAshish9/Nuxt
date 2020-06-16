@@ -1,20 +1,31 @@
 <template>
-  <div class="container">
+  <div class="container" style="width: 100vw;">
     <div>
-      <h1 class="title">
+          <Header/>
+      <h1 class="title animate__animated animate__rubberBand">
         first
-      </h1>
-     
+      </h1>     
+
+      <nuxt-link to="/users">
+        Users
+      </nuxt-link>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+// import Logo from '~/components/Logo.vue'
+import Header from '~/components/Header.vue'
 
 export default {
+
+  transition:{
+  name: 'animated rubberBand'
+  },
+
   components: {
-    Logo
+    // Logo,
+    Header
   }
 }
 </script>
