@@ -1,13 +1,12 @@
 <template>
-  <nuxt-link :to="postLink"  class="post-preview">
+  <nuxt-link :to="postLink" class="post-preview">
     <article>
       <div
         class="post-thumbnail"
-        :style="{backgroundImage:'url('+ thumbnail + ')'}"
-      ></div>
+        :style="{backgroundImage: 'url(' + thumbnail + ')'}"></div>
       <div class="post-content">
         <h1>{{ title }}</h1>
-        <p>{{  previewText }}</p>
+        <p>{{ previewText }}</p>
       </div>
     </article>
   </nuxt-link>
@@ -15,14 +14,14 @@
 
 <script>
 export default {
-  name: "PostPreview",
+  name: 'PostPreview',
   props: {
     id: {
       type: String,
       required: true
     },
-    isAdmin:{
-      type:Boolean,
+    isAdmin: {
+      type: Boolean,
       required: true
     },
     title: {
@@ -39,12 +38,13 @@ export default {
     }
   },
   computed: {
-    postLink(){
-      return this.isAdmin?'/admin/'+this.id :'/posts/'+this.id
+    postLink() {
+      return this.isAdmin ? '/admin/' + this.id : '/posts/' + this.id
     }
   }
-};
+}
 </script>
+
 
 <style scoped>
 .post-preview {

@@ -7,25 +7,24 @@
 </template>
 
 <script>
-import AdminPostForm from "@/components/Admin/AdminPostForm";
+import AdminPostForm from '@/components/Admin/AdminPostForm'
 
 export default {
-  layout: "admin",
+  layout: 'admin',
   components: {
     AdminPostForm
   },
   data() {
     return {
       loadedPost: {
-        author: "Sai",
-        title: "My Post",
-        content: "NIce Post",
-        thumbnailLink:
-          "https://image.freepik.com/free-vector/smart-city-concepts_46706-682.jpg"
+        author: 'Sai',
+        title: 'My awesome Post',
+        content: 'Super amazing, thanks for that!',
+        thumbnailLink: 'https://static.pexels.com/photos/270348/pexels-photo-270348.jpeg'
       }
-    };
+    }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -33,6 +32,7 @@ export default {
   width: 90%;
   margin: 20px auto;
 }
+
 @media (min-width: 768px) {
   .update-form {
     width: 500px;
