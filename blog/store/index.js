@@ -1,5 +1,4 @@
 import Vuex from "vuex";
-import axios from "axios";
 
 const createStore = () => {
   return new Vuex.Store({
@@ -17,17 +16,18 @@ const createStore = () => {
         const postIndex = state.loadedPosts.findIndex(
           post => post.id === editedPost.id
         );
+        // this.$axios
         state.loadedPosts[postIndex] = editedPost;
       }
     },
     actions: {
       nuxtServerInit(vuexContext, context) {
-        return axios
-          .get(process.env.firebaseUrl+"posts.json")
-          .then(res => {
+        return context.app.$axios
+          .$get("posts.json")
+          .then(data => {
             const postArray = [];
-            for (let key in res.data) {
-              postArray.push({ ...res.data[key], id: key });
+            for (let key in data) {
+              postArray.push({ ...data[key], id: key });
             }
             vuexContext.commit("setPosts", postArray);
           })
@@ -63,15 +63,16 @@ const createStore = () => {
           ...post,
           updatedDate: new Date()
         };
-        return axios
-          .post(
-            process.env.firebaseUrl+"posts.json",
+        return this.$axios
+          .$post(
+            // process.env.firebaseUrl+
+            "posts.json",
             createdPost
           )
           .then(res => {
             vuexContext.commit("addPost", {
               ...createdPost,
-              id: res.data.name
+              id: res.name
             });
           })
           .catch(e => {
@@ -79,9 +80,10 @@ const createStore = () => {
           });
       },
       editPost(vuexContext, post) {
-        return axios
-          .put(
-            process.env.firebaseUrl+"posts/" + post.id + ".json",
+        return this.$axios
+          .$put(
+            // process.env.firebaseUrl+
+            "posts/" + post.id + ".json",
             post
           )
           .then(res => {
