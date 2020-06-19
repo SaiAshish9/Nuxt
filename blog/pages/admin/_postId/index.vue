@@ -1,30 +1,44 @@
 <template>
   <div class="admin-post-page">
     <section class="update-form">
-      <AdminPostForm :post="loadedPost" />
+      <AdminPostForm :post="loadedPost" @submit="onSubmitted" />
     </section>
   </div>
 </template>
 
 <script>
-import AdminPostForm from '@/components/Admin/AdminPostForm'
+import AdminPostForm from "@/components/Admin/AdminPostForm";
+import axios from "axios";
 
 export default {
-  layout: 'admin',
+  layout: "admin",
   components: {
     AdminPostForm
   },
-  data() {
-    return {
-      loadedPost: {
-        author: 'Sai',
-        title: 'My awesome Post',
-        content: 'Super amazing, thanks for that!',
-        thumbnailLink: 'https://static.pexels.com/photos/270348/pexels-photo-270348.jpeg'
-      }
+  asyncData(context) {
+    return axios
+      .get(
+          process.env.firebaseUrl+ "posts/" +
+          context.params.postId +
+          ".json"
+      )
+      .then(res => {
+        console.log(res.data);
+        return {
+          loadedPost: {...res.data,id:context.params.postId}
+        };
+      })
+      .catch(e => context.error(e));
+  },
+  methods: {
+    onSubmitted(editedPost) {
+      this.$store.dispatch("editPost", editedPost)
+      .then(() => {
+        this.$router.push("/admin");
+      });
     }
   }
-}
+};
 </script>
 
 <style scoped>

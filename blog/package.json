@@ -11,6 +11,10 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "fs": "^0.0.1-security",
+    "iview": "^3.5.4",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {}

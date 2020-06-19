@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 
 export default {
   mode: 'universal',
@@ -20,6 +22,11 @@ export default {
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
+
+  env:{
+  firebaseUrl:process.env.FIREBASE_URL
+  },
+
   /*
   ** Global CSS
   */
