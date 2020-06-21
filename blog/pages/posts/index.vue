@@ -7,6 +7,7 @@
 <script>
 
 export default {
+  middleware:'log',
   computed: {
     loadedPosts() {
       return this.$store.getters.loadedPosts
@@ -15,7 +16,7 @@ export default {
 };
 </script>
 
-
+ 
 <style scoped>
 .posts-page {
   display: flex;

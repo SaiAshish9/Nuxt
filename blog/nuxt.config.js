@@ -40,7 +40,8 @@ export default {
   // },
 
   env: {
-    firebaseUrl: process.env.FIREBASE_URL
+    firebaseUrl: process.env.FIREBASE_URL,
+    restApiKey: process.env.REST_API
   },
 
   transition: {
